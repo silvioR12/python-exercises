@@ -1,0 +1,104 @@
+#Exercício 2:
+
+from math import sqrt
+def F(n):
+    return ((1+sqrt(5))**n-(1-sqrt(5))**n)/(2**n*sqrt(5))
+
+def Fibonacci(startNumber, endNumber):
+    n = 0
+    cur = F(n)
+    while cur <= endNumber:
+        if startNumber <= cur:
+            print(cur)
+        n += 1
+        cur = F(n)
+Fibonacci(1,100)
+
+--------------------------------------------------------------------------------------
+#Exercício 3:
+"""
+3) Dado um vetor que guarda o valor de faturamento diário de uma distribuidora, faça um programa, na linguagem que desejar, que calcule e retorne:
+• O menor valor de faturamento ocorrido em um dia do mês;
+• O maior valor de faturamento ocorrido em um dia do mês;
+• Número de dias no mês em que o valor de faturamento diário foi superior à média mensal."""
+import os
+clear = lambda: os.system('clear')
+clear()
+
+faturamento_diario = []
+cont = 1
+
+while True:
+  clear()
+  valor = int(input('Dia {}/06/2022  - R$'.format(cont)))
+  faturamento_diario.append(valor)
+  cont += 1
+  sair = input('Deseja sair do programa ? 1 - SIM ou 2 - NÃO: ')
+  if sair == '1':
+    break
+  else:
+    continue
+maior_valor = max(faturamento_diario)
+menor_valor = min(faturamento_diario)
+#Obtendo os indicies da maior e menor venda para usar como parâmetro de dias
+indicie_maior = faturamento_diario.index(maior_valor)
+indicie_menor = faturamento_diario.index(menor_valor)
+
+print(faturamento_diario)
+print('O dia que mais  vendeu foi {}/06/2022 com R${} de vendas'.format(indicie_maior + 1,maior_valor))
+print('O dia que menos vendeu foi {}/06/2022 com R${} de vendas'.format(indicie_menor + 1,menor_valor))
+
+--------------------------------------------------------------------------------------
+
+"""
+4) Dado o valor de faturamento mensal de uma distribuidora, detalhado por estado:
+
+SP – R$67.836,43
+RJ – R$36.678,66
+MG – R$29.229,88
+ES – R$27.165,48
+Outros – R$19.849,53
+
+Escreva um programa na linguagem que desejar onde calcule o percentual de representação que cada estado teve dentro do valor total mensal da distribuidora.
+"""
+import os
+clear = lambda: os.system('clear')
+clear()
+
+
+#Agrupando as informações em um dicionário
+faturamento_mensal = { 'SP': 6783643 , 'RJ': 3667866 , 'MG': 2922988, 'ES':2716548 ,'Outros': 1984953}
+#Obtendo a soma de todos os valores do dicionário. Através da função sum, própria para lista
+faturamento_total = sum(list(faturamento_mensal.values()))
+#Convertendo de dicionário para tupla, para que fique mais intuitivo o trabalho durante o looping
+faturamento_mensal = list(faturamento_mensal.items())
+
+for estado,faturamento_estado in faturamento_mensal:
+  print('Estado: {} corresponde a {:.2f}%  do total de vendas'.format(estado,(faturamento_estado/faturamento_total)*100))
+
+
+-------------------------------------------------------------------------------------
+
+"""
+5) Escreva um programa que inverta os caracteres de um string.
+
+IMPORTANTE:
+a) Essa string pode ser informada através de qualquer entrada de sua preferência ou pode ser previamente definida no código;
+b) Evite usar funções prontas, como, por exemplo, reverse;
+
+"""
+import os
+clear = lambda: os.system('clear')
+clear()
+
+
+
+def inverter(txt):
+  return txt[::-1]
+
+texto = input('Digite uma palavra: ')
+texto_invertido = inverter(texto)
+
+clear()
+print('Normal:  {} '.format(texto))
+print('Texto invertido: {} '.format(texto_invertido))
